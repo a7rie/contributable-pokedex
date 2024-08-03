@@ -1,0 +1,21 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "An openly available pokedex in  which users can submit their own creations to be added",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^3.13.0",
+    "better-sqlite3": "^11.1.2",
+    "dotenv": "^16.4.5",
+    "graphql": "^16.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "type": "module"
+}
