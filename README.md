@@ -7,5 +7,5 @@ This is my essentially take on a Pokedex app; it allows for users to add their o
 The backend is a GraphQL server written in javascript, using Apollo Server. Currently, the database is a SQLite file, and better-sqlite-3 is used to communicate with the database. 
 
 
-
+A live version is hosted here: https://opendex.aminelnasri.com/
 
