@@ -50,10 +50,8 @@ export const createPokemon = ({ name, hp, attack, defense, type1, type2, ability
 
 // Search through the database
 export const searchPokemon = (searchData) => {
-    const query = createSearchQuery(searchData)
-    const searchQuery = db.prepare(query)
-    const searchResults = searchQuery.all()
-    return searchResults
+    const {searchQuery, params } = createSearchQuery(searchData)
+    return db.prepare(searchQuery).all(params)
 }
 
 // Return the number of Pokemon in the database

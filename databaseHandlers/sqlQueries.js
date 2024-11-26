@@ -11,64 +11,92 @@ export const createSearchQuery = ({ // Dynamically generate a query to return th
     indexLowerBound, indexUpperBound 
     }) => {
     let searchQuery = "SELECT * FROM pokemon WHERE 1=1 "
+    const params = {};
     if (name) {
-        searchQuery += `AND name LIKE '%${name}%' `
+        searchQuery += `AND name LIKE @name `
+        params.name = `%${name}%`;
     }
     if (hpLowerBound) {
-        searchQuery += `AND hp >= ${hpLowerBound} `
+        searchQuery += `AND hp >= @hpLowerBound `
+        params.hpLowerBound = hpLowerBound
+
     }
     if (hpUpperBound) {
-        searchQuery += `AND hp <= ${hpUpperBound} `
+        searchQuery += `AND hp <= @hpUpperBound `
+        params.hpUpperBound = hpUpperBound
     }
     if (attackLowerBound) {
-        searchQuery += `AND attack >= ${attackLowerBound} `
+        searchQuery += `AND attack >= @attackLowerBound `
+        params.attackLowerBound = attackLowerBound
+
     }
     if (attackUpperBound) {
-        searchQuery += `AND attack <= ${attackUpperBound} `
+        searchQuery += `AND attack <= @attackUpperBound `
+        params.attackUpperBound = attackUpperBound
     }
     if (defenseLowerBound) {
-        searchQuery += `AND defense >= ${defenseLowerBound} `
+        searchQuery += `AND defense >= @defenseLowerBound `
+        params.defenseLowerBound = defenseLowerBound
     }
     if (defenseUpperBound) {
-        searchQuery += `AND defense <= ${defenseUpperBound} `
+        searchQuery += `AND defense <= @defenseUpperBound `
+        params.defenseUpperBound = defenseLowerBound
     }
+
     if (type1) {
-        searchQuery += `AND type1='${type1}' COLLATE NOCASE `
+        searchQuery += `AND type1=@type1 COLLATE NOCASE `
+        params.type1 = type1
     }
+
     if (type2) {
-        searchQuery += `AND type2='${type2}' COLLATE NOCASE `
+        searchQuery += `AND type2=@type2 COLLATE NOCASE `
+        params.type2 = type2
     }
     if (ability1) {
-        searchQuery += `AND ability1='${ability1}' COLLATE NOCASE `
+        searchQuery += `AND ability1=@ability1 COLLATE NOCASE `
+        params.ability1 = ability1
     }
+
     if (ability2) {
-        searchQuery += `AND ability2='${ability2}' COLLATE NOCASE `
+        searchQuery += `AND ability2=@ability2 COLLATE NOCASE `
+        params.ability2 = ability2
     }
+
     if (speedLowerBound) {
-        searchQuery += `AND speed >= ${speedLowerBound} `
+        searchQuery += `AND speed >= @speedLowerBound `
+        params.speedLowerBound = speedLowerBound
     }
     if (speedUpperBound) {
-        searchQuery += `AND speed <= ${speedUpperBound} `
+        searchQuery += `AND speed <= @speedUpperBound `
+        params.speedUpperBound = speedUpperBound
     }
     if (spatkLowerBound) {
-        searchQuery += `AND spatk >= ${spatkLowerBound} `
+        searchQuery += `AND spatk >= @spatkLowerBound `
+        params.spatkLowerBound = spatkLowerBound
+
     }
     if (spatkUpperBound) {
-        searchQuery += `AND spatk <= ${spatkUpperBound} `
+        searchQuery += `AND spatk <= @spatkUpperBound `
+        params.spatkUpperBound = spatkUpperBound
     }
     if (spdefLowerBound) {
-        searchQuery += `AND spdef >= ${spdefLowerBound} `
+        searchQuery += `AND spdef >= @spdefLowerBound `
+        params.spdefLowerBound = spdefLowerBound
     }
     if (spdefUpperBound) {
-        searchQuery += `AND spdef <= ${spdefUpperBound} `
+        searchQuery += `AND spdef <= @spdefUpperBound `
+        params.spdefUpperBound = spdefUpperBound
     }
     if (indexLowerBound) {
-        searchQuery += `AND id >= ${indexLowerBound} `
+        searchQuery += `AND id >= @indexLowerBound `
+        params.indexLowerBound = indexLowerBound
     }
     if (indexUpperBound) {
-        searchQuery += `AND id <= ${indexUpperBound}`
+        searchQuery += `AND id <= @indexUpperBound`
+        params.indexUpperBound = indexUpperBound
     }
-    return searchQuery
+
+    return { searchQuery, params }
 }
 
 export const numRowsQuery = 'SELECT COUNT(*) FROM pokemon' // Get # of Pokemon
